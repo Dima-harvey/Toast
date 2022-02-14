@@ -1,37 +1,85 @@
 import babel from 'rollup-plugin-babel'
-import resolve from '@rollup/plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import resolve from 'rollup-plugin-node-resolve'
+import external from 'rollup-plugin-peer-deps-external'
 import { terser } from 'rollup-plugin-terser'
-import postcss from 'rollup-plugin-postcss'
+import { uglify } from 'rollup-plugin-uglify'
 
-// eslint-disable-next-line import/no-anonymous-default-export
+const input = 'src/index.js'
+const output = 'dist/index'
+
 export default [
   {
-    input: './src/index.js',
-    output: [
-      {
-        file: 'dist/index.js',
-        format: 'cjs'
-      }
-    ],
+    input: input,
+    output: {
+      file: `${output}.js`,
+      format: 'cjs'
+    },
     plugins: [
-      postcss({
-        plugins: [],
-        minimize: true
+      resolve({
+        browser: true
+      }),
+      commonjs({
+        include: ['node_modules/**'],
+        namedExports: {
+          'react-dom': ['createPortal']
+        }
       }),
       babel({
-        exclude: 'node_modules/**',
-        presets: ['@babel/preset-react']
+        exclude: 'node_modules/**'
       }),
+      external(),
+      uglify()
+    ]
+  },
+  {
+    input: input,
+    output: {
+      file: `${output}.modern.js`,
+      format: 'es'
+    },
+
+    plugins: [
       resolve(),
-      terser(),
       commonjs({
+        include: ['node_modules/**'],
         namedExports: {
-          // https://github.com/rollup/rollup-plugin-commonjs#custom-named-exports
-          'node_modules/react/index.js': ['useState', 'useRef', 'useEffect']
+          'react-dom': ['createPortal']
         }
-      })
-    ],
-    external: ['styled-components']
+      }),
+      babel({
+        exclude: 'node_modules/**'
+      }),
+      external(),
+      terser()
+    ]
+  },
+  {
+    input: input,
+    output: {
+      name: 'ReactUi',
+      file: `${output}.umd.js`,
+      globals: {
+        react: 'React',
+        'styled-components': 'styled',
+        'prop-types': 'PropTypes',
+        'prop-types/checkPropTypes': 'checkPropTypes'
+      },
+      format: 'umd'
+    },
+    plugins: [
+      resolve(),
+      commonjs({
+        include: ['node_modules/**'],
+        namedExports: {
+          'react-dom': ['createPortal']
+        }
+      }),
+      external(),
+      babel({
+        exclude: 'node_modules/**'
+      }),
+      terser()
+    ]
   }
 ]

@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
 
+import { Toast } from '../components/Toast'
 import { POSITIONS, ANIMATION, MARGIN, TIME, BUTTON_TOAST } from '../constants'
 import success from '../assets/success.svg'
 import warning from '../assets/warning.svg'
 import question from '../assets/question.svg'
 import error from '../assets/error.svg'
-import { Toast } from '../components/Toast'
 
 const stories = storiesOf('App Test', module)
 stories.addDecorator(withKnobs)

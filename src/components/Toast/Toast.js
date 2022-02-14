@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   ContainerCenter,
   ContainerImage,
@@ -10,19 +10,18 @@ import {
 
 export const Toast = (props) => {
   const toastList = props.value
-
-  if (toastList.length === 4) {
-    toastList.shift()
-  }
-  const [List, settoastList] = useState(toastList)
+  const [list, settoastList] = useState(toastList)
 
   useEffect(() => {
+    if (toastList.length === 4) {
+      toastList.shift()
+    }
     settoastList([...toastList])
   }, [toastList])
 
   useEffect(() => {
     const interval = setTimeout(() => {
-      if (toastList.length && List.length && props.time) {
+      if (toastList.length && list.length && props.time) {
         deleteToast(toastList[0].id)
       }
     }, props.time)
@@ -30,18 +29,21 @@ export const Toast = (props) => {
     return () => {
       clearInterval(interval)
     }
-  }, [toastList, List])
+  }, [toastList, list])
 
-  const deleteToast = (id) => {
-    const itemList = List.findIndex((e) => e.id === id)
-    const itemToast = toastList.findIndex((e) => e.id === id)
-    List.splice(itemList, 1)
-    toastList.splice(itemToast, 1)
-    settoastList([...List])
-  }
+  const deleteToast = useCallback(
+    (id) => {
+      const itemList = list.findIndex((e) => e.id === id)
+      const itemToast = toastList.findIndex((e) => e.id === id)
+      list.splice(itemList, 1)
+      toastList.splice(itemToast, 1)
+      settoastList([...list])
+    },
+    [list]
+  )
   return (
     <ContainerCenter position={props.position}>
-      {List.map((toast, i) => (
+      {list.map((toast, i) => (
         <WrapperContainer
           key={i}
           style={{ backgroundColor: toast.backgroundColor }}

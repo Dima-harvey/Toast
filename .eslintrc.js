@@ -4,6 +4,7 @@ module.exports = {
         "jest": true
     },
     "extends": [
+        "eslint:recommended",
         "standard",
         "standard-react",
         "plugin:prettier/recommended",
@@ -11,7 +12,7 @@ module.exports = {
         "prettier/react"
     ],
     "parserOptions": {
-        "ecmaVersion": 2020,
+        "ecmaVersion": 6,
         "ecmaFeatures": {
             "legacyDecorators": true,
             "jsx": true
@@ -19,7 +20,7 @@ module.exports = {
     },
     "settings": {
         "react": {
-            "version": "16"
+            "version": "17"
         }
     },
     "rules": {

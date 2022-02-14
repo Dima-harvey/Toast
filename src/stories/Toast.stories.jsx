@@ -17,7 +17,7 @@ stories.add('App', () => {
   const [list, setList] = useState([])
   let Properties = null
 
-  const showToast = (type) => {
+  const showToast = type => {
     const id = Math.floor(Math.random() * 50 + 1)
     switch (type) {
       case 'success':
@@ -62,8 +62,8 @@ stories.add('App', () => {
     }
   }
   return (
-    <>
-      {BUTTON_TOAST.map((index) => (
+    <React.Fragment>
+      {BUTTON_TOAST.map(index => (
         <button key={index.type} onClick={() => showToast(index.type)}>
           {index.type}
         </button>
@@ -75,6 +75,6 @@ stories.add('App', () => {
         animation={select('animation', ANIMATION)}
         margin={select('margin', MARGIN)}
       />
-    </>
+    </React.Fragment>
   )
 })

@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-import Button from '../Button/Button'
-import Message from '../Message/Message'
-import Image from '../Image/Image'
-import { ContainerCenter, WrapperContainer, WrapperProgres } from './styles'
+import { Button } from '../Button'
+import { Message } from '../Message'
+import { Image } from '../Image'
+import {
+  ContainerCenter,
+  WrapperContainer,
+  WrapperProgres
+} from './styles'
 
-export const Toast = (props) => {
+export const Toast = props => {
   const toastList = props.value
   const [list, settoastList] = useState(toastList)
 
@@ -29,9 +33,9 @@ export const Toast = (props) => {
   }, [toastList, list])
 
   const deleteToast = useCallback(
-    (id) => {
-      const itemList = list.findIndex((e) => e.id === id)
-      const itemToast = toastList.findIndex((e) => e.id === id)
+    id => {
+      const itemList = list.findIndex(e => e.id === id)
+      const itemToast = toastList.findIndex(e => e.id === id)
       list.splice(itemList, 1)
       toastList.splice(itemToast, 1)
       settoastList([...list])
@@ -48,7 +52,7 @@ export const Toast = (props) => {
           margin={props.margin}
         >
           <Button onClick={() => deleteToast(toast.id)} />
-          <Image src={toast.icon} alt='' />
+            <Image src={toast.icon} alt="" />
           <div>
             <Message>{toast.description}</Message>
           </div>

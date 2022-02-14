@@ -17,8 +17,8 @@
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
-    "test": "eslint src/**/*.js",
-    "lint": "eslint --fix --ext .js,.jsx .",
+    "eslint:test": "eslint src --ext .js,.jsx",
+    "eslint:fix": "eslint --fix src --ext .js,.jsx",
     "deploy": "gh-pages -d storybook-static"
   },
   "eslintConfig": {
@@ -88,8 +88,6 @@
   },
   "peerDependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "prop-types": "^15.7.2",
     "styled-components": "^5.3.3"
   }
 }

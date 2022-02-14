@@ -1,7 +1,7 @@
 import React from 'react'
 import { ContainerImage, Logo } from './styles'
 
-const Image = (props) => {
+export const Image = props => {
   const { src, alt } = props
   return (
     <ContainerImage>
@@ -10,4 +10,3 @@ const Image = (props) => {
   )
 }
 
-export default Image

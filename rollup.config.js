@@ -13,7 +13,12 @@ export default [
     input: input,
     output: {
       file: `${output}.js`,
-      format: 'cjs'
+      format: 'cjs',
+      globals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        'prop-types': 'PropTypes'
+      },
     },
     plugins: [
       resolve({
@@ -28,7 +33,11 @@ export default [
       babel({
         exclude: 'node_modules/**'
       }),
-      external(),
+      external( [
+        'react',
+        'react-dom',
+        'prop-types'
+      ]),
       uglify()
     ]
   },
@@ -36,7 +45,7 @@ export default [
     input: input,
     output: {
       file: `${output}.modern.js`,
-      format: 'es'
+      format: 'es',
     },
 
     plugins: [

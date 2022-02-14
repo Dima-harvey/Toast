@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 
 export const ContainerCenter = styled.div`
-  float: ${(props) => (props.position === 'center' ? 'left' : 'right')};
+  float: ${props => (props.position === 'center' ? 'left' : 'right')};
   display: flex;
   width: 250px;
   top: 12px;
@@ -37,16 +37,16 @@ export const load = keyframes`
 	opacity:0 }
 `
 export const WrapperContainer = styled.div`
-  animation: ${(props) =>
+  animation: ${props =>
       props.animation === 'Left' ? rotateLeft : rotateRight}
     2s;
   justify-content: flex-end;
-  margin-top: ${(props) => (props.margin === 'small' ? 20 : 40)}px;
+  margin-top: ${props => (props.margin === 'small' ? 20 : 40)}px;
   border-radius: 13px;
 `
 export const WrapperProgres = styled.div`
   height: 5px;
   border-radius: 13px;
   background: #ff8fa2;
-  animation: ${load} ${(props) => props.time}ms linear forwards;
+  animation: ${load} ${props => props.time}ms linear forwards;
 `

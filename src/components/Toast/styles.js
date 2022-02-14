@@ -1,46 +1,20 @@
 import styled, { keyframes } from 'styled-components'
 
 export const ContainerCenter = styled.div`
-  margin: ${(props) => (props.position === 'center' ? '0 auto' : 'none')};
+  float: ${(props) => (props.position === 'center' ? 'left' : 'right')};
   display: flex;
   width: 250px;
+  top: 12px;
+  right: 50%;
   flex-direction: column;
   border-radius: 10px;
-  button {
-    position: relative;
-    margin-top: 5px;
-    margin-right: 10px;
-    float: right;
-    color: #fff;
-    outline: none;
-    border: none;
-    line-height: 1;
-    font-size: 16px;
-    padding: 0;
-    cursor: pointer;
-    background: 0 0;
-    border: 0;
-  }
+  z-index: 999999;
+  position: absolute;
 `
-export const ContainerImage = styled.div`
-  float: left;
-  margin-right: 10px;
-`
-export const Image = styled.img`
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  width: 40px;
-  height: 40px;
-`
-export const Message = styled.p`
-  padding-top: 15px;
-  color: white;
-`
+
 export const rotateLeft = keyframes`
 	from {
-		transform: translateX(100%);
+		transform: translateX(30%);
 		
 	}
 	to {
@@ -49,7 +23,7 @@ export const rotateLeft = keyframes`
 `
 export const rotateRight = keyframes`
 	from {
-		transform: translateX(-100%);
+		transform: translateX(-30%);
 		
 	}
 	to {

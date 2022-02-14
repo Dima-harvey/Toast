@@ -4,7 +4,6 @@ module.exports = {
         "jest": true
     },
     "extends": [
-        "eslint:recommended",
         "standard",
         "standard-react",
         "plugin:prettier/recommended",
@@ -29,6 +28,12 @@ module.exports = {
         "react/jsx-handler-names": 0,
         "react/jsx-fragments": 0,
         "react/no-unused-prop-types": 0,
-        "import/export": 0
+        "import/export": 0,
+        "prettier/prettier": [
+            "error",
+            {
+              "endOfLine": "auto"
+            },
+          ],
     },
 }

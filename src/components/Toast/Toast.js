@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import {
-  ContainerCenter,
-  ContainerImage,
-  Image,
-  Message,
-  WrapperContainer,
-  WrapperProgres
-} from './styles'
+
+import Button from '../Button/Button'
+import Message from '../Message/Message'
+import Image from '../Image/Image'
+import { ContainerCenter, WrapperContainer, WrapperProgres } from './styles'
 
 export const Toast = (props) => {
   const toastList = props.value
@@ -50,10 +47,8 @@ export const Toast = (props) => {
           animation={props.animation}
           margin={props.margin}
         >
-          <button onClick={() => deleteToast(toast.id)}>X</button>
-          <ContainerImage>
-            <Image src={toast.icon} alt='' />
-          </ContainerImage>
+          <Button onClick={() => deleteToast(toast.id)} />
+          <Image src={toast.icon} alt='' />
           <div>
             <Message>{toast.description}</Message>
           </div>

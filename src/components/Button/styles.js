@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const ButtonContainer = styled.button`
   position: relative;
-  margin-top: 5px;
-  margin-right: 10px;
+  margin-top: ${props => props.theme.sizeMargin.s}px;
+  margin-right: ${props => props.theme.sizeMargin.xs}px;
   float: right;
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   background: none;
 `

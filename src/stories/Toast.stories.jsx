@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
 
-import { Toast } from '../components/Toast'
 import { POSITIONS, ANIMATION, MARGIN, TIME, BUTTON_TOAST } from '../constants'
+import theme from '../theme'
+import { Toast } from '../components/Toast'
 import success from '../assets/success.svg'
 import warning from '../assets/warning.svg'
 import question from '../assets/question.svg'
@@ -24,7 +25,7 @@ stories.add('App', () => {
         Properties = {
           id,
           description: 'Success toast example',
-          backgroundColor: '#37e29a',
+          backgroundColor: `${theme.colors.green}`,
           icon: success
         }
         setList([...list, Properties])
@@ -33,7 +34,7 @@ stories.add('App', () => {
         Properties = {
           id,
           description: 'Error toast example',
-          backgroundColor: '#e25837',
+          backgroundColor:  `${theme.colors.red}`,
           icon: error
         }
         setList([...list, Properties])
@@ -42,7 +43,7 @@ stories.add('App', () => {
         Properties = {
           id,
           description: 'Info toast example',
-          backgroundColor: '#9a40d3',
+          backgroundColor: `${theme.colors.purple}`,
           icon: question
         }
         setList([...list, Properties])
@@ -51,7 +52,7 @@ stories.add('App', () => {
         Properties = {
           id,
           description: 'Warning toast example',
-          backgroundColor: '#f4e048',
+          backgroundColor: `${theme.colors.yellow}`,
           icon: warning
         }
         setList([...list, Properties])

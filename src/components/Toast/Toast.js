@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { ThemeProvider } from 'styled-components'
 
+import theme from '../../theme'
 import { Button } from '../Button'
 import { Message } from '../Message'
 import { Image } from '../Image'
-import {
-  ContainerCenter,
-  WrapperContainer,
-  WrapperProgres
-} from './styles'
+import { ContainerCenter, WrapperContainer, WrapperProgres } from './styles'
 
 export const Toast = props => {
   const toastList = props.value
@@ -43,23 +41,25 @@ export const Toast = props => {
     [list]
   )
   return (
-    <ContainerCenter position={props.position}>
-      {list.map((toast, i) => (
-        <WrapperContainer
-          key={i}
-          style={{ backgroundColor: toast.backgroundColor }}
-          animation={props.animation}
-          margin={props.margin}
-        >
-          <Button onClick={() => deleteToast(toast.id)} />
+    <ThemeProvider theme={theme}>
+      <ContainerCenter position={props.position}>
+        {list.map((toast, i) => (
+          <WrapperContainer
+            key={i}
+            style={{ backgroundColor: toast.backgroundColor }}
+            animation={props.animation}
+            margin={props.margin}
+          >
+            <Button onClick={() => deleteToast(toast.id)} />
             <Image src={toast.icon} alt="" />
-          <div>
-            <Message>{toast.description}</Message>
-          </div>
-          <WrapperProgres time={props.time} />
-        </WrapperContainer>
-      ))}
-    </ContainerCenter>
+            <div>
+              <Message>{toast.description}</Message>
+            </div>
+            <WrapperProgres time={props.time} />
+          </WrapperContainer>
+        ))}
+      </ContainerCenter>
+    </ThemeProvider>
   )
 }
 
@@ -67,5 +67,5 @@ Toast.defaultProps = {
   animation: 'Left',
   time: 3000,
   margin: 'small',
-  position: 'center'
+  position: 'top_right',
 }

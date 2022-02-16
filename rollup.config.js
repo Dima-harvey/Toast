@@ -4,6 +4,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import external from 'rollup-plugin-peer-deps-external'
 import { terser } from 'rollup-plugin-terser'
 import { uglify } from 'rollup-plugin-uglify'
+import alias from '@rollup/plugin-alias'
 
 const input = 'src/index.js'
 const output = 'dist/index'
@@ -38,7 +39,13 @@ export default [
         'react-dom',
         'prop-types'
       ]),
-      uglify()
+      alias({
+        entries: [
+          { find: '@components', replacement: '../' }, 
+          { find: '@', replacement: '../../' }       
+        ]
+      }),    
+      uglify(),
     ]
   },
   {
@@ -59,6 +66,12 @@ export default [
       babel({
         exclude: 'node_modules/**'
       }),
+      alias({
+        entries: [
+          { find: '@components', replacement: '../' }, 
+          { find: '@', replacement: '../../' }         
+        ]
+      }),  
       external(),
       terser()
     ]
@@ -84,6 +97,12 @@ export default [
           'react-dom': ['createPortal']
         }
       }),
+      alias({
+        entries: [
+          { find: '@components', replacement: '../' },
+          { find: '@', replacement: '../../' }          
+        ]
+      }),  
       external(),
       babel({
         exclude: 'node_modules/**'

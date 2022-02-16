@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
-
-import { POSITIONS, ANIMATION, MARGIN, TIME, BUTTON_TOAST } from '../constants'
-import theme from '../theme'
-import { Toast } from '../components/Toast'
-import success from '../assets/success.svg'
-import warning from '../assets/warning.svg'
-import question from '../assets/question.svg'
-import error from '../assets/error.svg'
+import { Toast } from '@components/Toast'
+import { POSITIONS, ANIMATION, MARGIN, TIME, BUTTON_TOAST } from '@/constants'
+import theme from '@/theme'
+import success from '@images/success.svg'
+import warning from '@images/warning.svg'
+import question from '@images/question.svg'
+import error from '@images/error.svg'
 
 const stories = storiesOf('App Test', module)
 stories.addDecorator(withKnobs)
@@ -26,7 +25,7 @@ stories.add('App', () => {
           id,
           description: 'Success toast example',
           backgroundColor: `${theme.colors.green}`,
-          icon: success
+          icon: success,
         }
         setList([...list, Properties])
         break
@@ -34,8 +33,8 @@ stories.add('App', () => {
         Properties = {
           id,
           description: 'Error toast example',
-          backgroundColor:  `${theme.colors.red}`,
-          icon: error
+          backgroundColor: `${theme.colors.red}`,
+          icon: error,
         }
         setList([...list, Properties])
         break
@@ -44,7 +43,7 @@ stories.add('App', () => {
           id,
           description: 'Info toast example',
           backgroundColor: `${theme.colors.purple}`,
-          icon: question
+          icon: question,
         }
         setList([...list, Properties])
         break
@@ -53,7 +52,7 @@ stories.add('App', () => {
           id,
           description: 'Warning toast example',
           backgroundColor: `${theme.colors.yellow}`,
-          icon: warning
+          icon: warning,
         }
         setList([...list, Properties])
         break

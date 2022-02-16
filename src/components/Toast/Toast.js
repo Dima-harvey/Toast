@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../../theme'
-import { Button } from '../Button'
-import { Message } from '../Message'
-import { Image } from '../Image'
+import { Button } from '@components/Button'
+import { Message } from '@components/Message'
+import { Image } from '@components/Image'
+import theme from '@/theme'
+
 import { ContainerCenter, WrapperContainer, WrapperProgres } from './styles'
 
 export const Toast = props => {

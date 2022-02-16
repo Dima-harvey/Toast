@@ -39,7 +39,7 @@ export const Toast = props => {
       toastList.splice(itemToast, 1)
       settoastList([...list])
     },
-    [list]
+    [list, toastList]
   )
   return (
     <ThemeProvider theme={theme}>
@@ -54,7 +54,11 @@ export const Toast = props => {
             <Button onClick={() => deleteToast(toast.id)} />
             <Image src={toast.icon} alt="" />
             <div>
-              <Message>{toast.description}</Message>
+              <Message>
+                {props.children !== undefined
+                  ? props.children
+                  : toast.description}
+              </Message>
             </div>
             <WrapperProgres time={props.time} />
           </WrapperContainer>

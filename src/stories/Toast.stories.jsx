@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { withKnobs, select } from '@storybook/addon-knobs'
+import { withKnobs, select, text } from '@storybook/addon-knobs'
 import { Toast } from '@components/Toast'
-import { POSITIONS, ANIMATION, MARGIN, TIME, BUTTON_TOAST } from '@/constants'
+import {
+  POSITIONS,
+  ANIMATION,
+  MARGIN,
+  TIME,
+  BUTTON_TOAST,
+} from '@/constants'
 import theme from '@/theme'
 import success from '@images/success.svg'
 import warning from '@images/warning.svg'
@@ -16,6 +22,7 @@ stories.addDecorator(withKnobs)
 stories.add('App', () => {
   const [list, setList] = useState([])
   let Properties = null
+  const toast = select('toast', BUTTON_TOAST)
 
   const showToast = type => {
     const id = Math.floor(Math.random() * 50 + 1)
@@ -61,20 +68,19 @@ stories.add('App', () => {
         setList([])
     }
   }
+
   return (
     <React.Fragment>
-      {BUTTON_TOAST.map(index => (
-        <button key={index.type} onClick={() => showToast(index.type)}>
-          {index.type}
-        </button>
-      ))}
+      <button onClick={() => showToast(toast)}>showToast</button>
       <Toast
         value={list}
         position={select('position', POSITIONS)}
         time={select('time (ms)', TIME)}
         animation={select('animation', ANIMATION)}
         margin={select('margin', MARGIN)}
-      />
+      >
+        {text('label')}
+      </Toast>
     </React.Fragment>
   )
 })

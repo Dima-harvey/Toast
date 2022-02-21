@@ -5,6 +5,7 @@ import external from 'rollup-plugin-peer-deps-external'
 import { terser } from 'rollup-plugin-terser'
 import { uglify } from 'rollup-plugin-uglify'
 import alias from '@rollup/plugin-alias'
+import image from '@rollup/plugin-image'
 
 const input = 'src/index.js'
 const output = 'dist/index'
@@ -42,10 +43,12 @@ export default [
       alias({
         entries: [
           { find: '@components', replacement: '../' }, 
-          { find: '@', replacement: '../../' }       
+          { find: '@', replacement: '../../' }, 
+            
         ]
       }),    
       uglify(),
+      image()
     ]
   },
   {
@@ -69,11 +72,12 @@ export default [
       alias({
         entries: [
           { find: '@components', replacement: '../' }, 
-          { find: '@', replacement: '../../' }         
+          { find: '@', replacement: '../../' },            
         ]
       }),  
       external(),
-      terser()
+      terser(),
+      image()
     ]
   },
   {
@@ -100,14 +104,15 @@ export default [
       alias({
         entries: [
           { find: '@components', replacement: '../' },
-          { find: '@', replacement: '../../' }          
+          { find: '@', replacement: '../../' },           
         ]
       }),  
       external(),
       babel({
         exclude: 'node_modules/**'
       }),
-      terser()
+      terser(),
+      image()
     ]
   }
 ]

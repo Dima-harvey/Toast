@@ -5,12 +5,64 @@ import { Button } from '@components/Button'
 import { Message } from '@components/Message'
 import { Image } from '@components/Image'
 import theme from '@/theme'
+import success from '@/assets/images/success.svg'
+import warning from '@/assets/images/warning.svg'
+import question from '@/assets/images/question.svg'
+import error from '@/assets/images/error.svg'
 
 import { ContainerCenter, WrapperContainer, WrapperProgres } from './styles'
 
 export const Toast = props => {
-  const toastList = props.value
+  const [newlist, setList] = useState([])
+  const toastList = newlist
   const [list, settoastList] = useState(toastList)
+  let Properties = null
+
+  const showToast = type => {
+    const id = Math.floor(Math.random() * 50 + 1)
+    switch (type) {
+      case 'success':
+        Properties = {
+          id,
+          description: 'Success toast example',
+          backgroundColor: `${theme.colors.green}`,
+          icon: success,
+        }
+        break
+      case 'error':
+        Properties = {
+          id,
+          description: 'Error toast example',
+          backgroundColor: `${theme.colors.red}`,
+          icon: error,
+        }
+        break
+      case 'info':
+        Properties = {
+          id,
+          description: 'Info toast example',
+          backgroundColor: `${theme.colors.purple}`,
+          icon: question,
+        }
+        break
+      case 'warning':
+        Properties = {
+          id,
+          description: 'Warning toast example',
+          backgroundColor: `${theme.colors.yellow}`,
+          icon: warning,
+        }
+        break
+
+      default:
+        setList([])
+    }
+    setList([...newlist, Properties])
+  }
+
+  useEffect(() => {
+    showToast(props.value)
+  }, [props.value])
 
   useEffect(() => {
     if (toastList.length === 4) {
@@ -41,6 +93,7 @@ export const Toast = props => {
     },
     [list, toastList]
   )
+
   return (
     <ThemeProvider theme={theme}>
       <ContainerCenter position={props.position}>
@@ -73,4 +126,5 @@ Toast.defaultProps = {
   time: 3000,
   margin: 'small',
   position: 'top_right',
+  value: 'info',
 }

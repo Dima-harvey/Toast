@@ -7,20 +7,20 @@ This guide will help you put your project on ***Google Play*** and ***App Store*
 
 ### Building Standalone Apps
 
-1. - ### Install Expo CL
+### Install Expo CL
 Expo CLI is the tool for developing and building Expo apps. Run `npm install -g expo-cli` (or `yarn global add expo-cli`) to get it.
 If you haven't created an Expo account before, you'll be asked to create one when running the build command.
-2. - ### Start the build
+### Start the build
 Run `expo build:android` or `expo build:ios`. If you don't already have a development server running for this project, expo will start one for you.
 
 ### Loading apps in the Apple App Store and Google Play
 
 1. ### Start the upload
 To upload the previously built standalone app to the appropriate app store, you simply run `eas submit -p android` or `eas submit -p`  ios. However, you have a few options for choosing which app binary you want to upload (remember to choose one at the time):
-***--latest***  - uploads the latest build for the given platform found on Expo Servers
-***--url*** <url> - uploads a build from given URL
-***--path*** <path> - uploads a build from the local file system
-***--id*** <id> - uploads a build with the given ID
+* --latest  - uploads the latest build for the given platform found on Expo Servers
+* --url<url> - uploads a build from given URL
+* --path <path> - uploads a build from the local file system
+* --id <id> - uploads a build with the given ID
 
 2. ### If you choose to upload your Android app to Google Play
    #### Important:

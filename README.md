@@ -34,7 +34,7 @@ See [expo.fyi/first-android-submission](https://github.com/expo/fyi/blob/main/fi
 #### Using EAS CLI to upload the further builds of your app
 After these steps, you can make use of EAS CLI to upload your further app builds to Google Play.
 To upload your Android app to Google Play, run `eas submit -p android`.
-3. ###  If you choose to upload your iOS app to TestFlight
+###  If you choose to upload your iOS app to TestFlight
 #### Using EAS CLI
 To upload your iOS app to TestFlight, run `eas submit -p ios`
 #### Manually uploading your app (without EAS CLI)
